@@ -1,0 +1,2 @@
+export("genSims", "makeMat.sims", "oaks", "plot.hsd", "sims.aov",
+       "sims.hsd", "traits")
