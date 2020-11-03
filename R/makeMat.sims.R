@@ -1,5 +1,5 @@
 makeMat.sims <-
-function(x, sites, do = c('Means', 'Proportions'), probThresh = c(0.50), type = 'hsd') {
+function(x, sites = attributes(x, 'Nsites')[1], do = c('Means', 'Proportions'), probThresh = c(0.50), type = 'hsd') {
   if(type == 'hsd') {
     out <- matrix(NA, length(attr(x, 'Ntrees')), length(attr(x, 'Nleaves')),
                   dimnames = list(paste('Ntr', attr(x, 'Ntrees')),
