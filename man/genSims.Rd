@@ -4,7 +4,9 @@
 Generate simulated trait data structured by population
 }
 \description{
-This function creates the simulated datasets for
+This function simulates trait data in a structured hierarchical
+    sampling design, where observations ("leaves") are nested within individuals
+    ("trees"), and individuals within "sites" or populations.
 }
 \usage{
 genSims(Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, all.dat, chars, writeDat = TRUE)
@@ -33,7 +35,8 @@ Data frame: character means by individual, with characters as columns; should in
 Data frame: characters measured (in the example, on leaves), with characters as columns; should include a column called "tree" for individuals amd one called "site"
 }
   \item{chars}{
-Vector: characters to include in simulation
+Vector: characters to include in simulation; must match a subset of the columns in
+    siteMeans, treeMeans, and all.dat
 }
   \item{writeDat}{
 Boolean: whether to write the list containing simulations to disk
@@ -58,15 +61,15 @@ otm <- as.data.frame(t(sapply(split(oaks$traits[oaks$charVec], oaks$traits$tree)
 otm$site <- oaks$traits$site[match(row.names(otm), oaks$traits$tree)]
 osm <- as.data.frame(t(sapply(split(otm, oaks$traits$site[match(row.names(otm), oaks$traits$tree)]), function(x) apply(x, 2, mean))))
 
-simsList <- genSims(Nsites = 5,
-                    Ntrees = 3:8,
-                    Nleaves = 3:8,
-                    Nreps = 20,
-                    all.dat = oaks$traits,
-                    siteMeans = osm,
-                    treeMeans = otm,
-                    chars = oaks$charVec,
-                    writeDat = FALSE
+simsList <- genSims(Nsites = 5, # all sims will have 5 sites; ordinarily, 20 or more
+                    Ntrees = 3:8, # 3-8 trees per site
+                    Nleaves = 3:8, # 3-8 leaves per tree
+                    Nreps = 20, # 20 reps; ordinarily, 100 or more
+                    all.dat = oaks$traits, # data frame of all data
+                    siteMeans = osm, # data averaged by sites, from the tree average
+                    treeMeans = otm, # data averaged by tree
+                    chars = oaks$charVec, # characters to analyze
+                    writeDat = FALSE # whether to write out the analysis list
                     )
 
 simsAOV <- sims.aov(simsList)
