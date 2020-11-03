@@ -2,6 +2,8 @@ export("genSims", "plot.hsd", "sims.aov",
        "sims.hsd")
 import(agricolae)
 import(egg)
+import(ggplot2)
+import(gridExtra)
 import(magrittr)
 import(mvtnorm)
 import(parallel)
