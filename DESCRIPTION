@@ -3,8 +3,7 @@ Type: Package
 Title: Generate simulated trait data structured by population
 Version: 1.0
 Date: 2020-11-02
-Authors@R: person("Hipp", "Andrew", email = "ahipp@mortonarb.org",
-    role = c("aut", "cre"))
+Author: Andrew L Hipp <ahipp@mortonarb.org>
 Maintainer: Andrew L Hipp <ahipp@mortonarb.org>
 Description: This package simulates trait data in a structured hierarchical
     sampling design, where observations ("leaves") are nested within individuals

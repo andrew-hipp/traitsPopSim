@@ -1,5 +1,5 @@
 sims.hsd <-
-function(sa, writeDat = TRUE) {
+function(sa, Ncores = 1, writeDat = TRUE) {
   ## run HSD tests for all anovas
   ## return only number of unique groups at a given alpha
     hsdList <- vector('list')
