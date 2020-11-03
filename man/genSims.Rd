@@ -76,5 +76,4 @@ simsAOV <- sims.aov(simsList)
 simsHSD <- sims.hsd(simsAOV)
 
 plot.hsd(simsHSD, probThresh = 0.5)
-
-  }
+}
