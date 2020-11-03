@@ -11,7 +11,6 @@ Using sims.hsd output, plots a heatmap of the number of Tukey's HSD categories
 \usage{
 plot.hsd(x, whichdo = c("Means", "Proportions"), useValNames = FALSE, printVals = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 output from sims.hsd
