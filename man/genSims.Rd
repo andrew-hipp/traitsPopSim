@@ -9,7 +9,7 @@ This function simulates trait data in a structured hierarchical
     ("trees"), and individuals within "sites" or populations.
 }
 \usage{
-genSims(Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, all.dat, chars, writeDat = TRUE)
+genSims(Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, all.dat, chars, Ncores = 1, writeDat = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,6 +37,9 @@ Data frame: characters measured (in the example, on leaves), with characters as 
   \item{chars}{
 Vector: characters to include in simulation; must match a subset of the columns in
     siteMeans, treeMeans, and all.dat
+}
+\item{Ncores}{
+Integer: number of processing cores to use (based on Parallel package)
 }
   \item{writeDat}{
 Boolean: whether to write the list containing simulations to disk

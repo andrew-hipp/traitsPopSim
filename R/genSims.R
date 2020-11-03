@@ -7,6 +7,7 @@ function(Nsites,
                     treeMeans,
                     all.dat,
                     chars,
+                    Ncores = 1,
                     writeDat = TRUE
                     ) {
   # characters to simulate
