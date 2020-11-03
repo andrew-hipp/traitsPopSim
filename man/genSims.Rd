@@ -11,7 +11,6 @@ This function simulates trait data in a structured hierarchical
 \usage{
 genSims(Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, all.dat, chars, Ncores = 1, writeDat = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Nsites}{
 Number of sites to simulate: a single integer
@@ -78,5 +77,5 @@ simsList <- genSims(Nsites = 10, # all sims will have 5 sites; ordinarily, 20 or
 simsAOV <- sims.aov(simsList)
 simsHSD <- sims.hsd(simsAOV)
 
-plot.hsd(simsHSD, probThresh = 0.3)
+plot.hsd(simsHSD, probThresh = 0.7)
 }
