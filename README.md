@@ -1,5 +1,7 @@
 # traitsPopSim
-_Still under development; not ready to install yet_  
+_v0.9-1; 2020-11-03_  
+_Documentation still in prep, package functional_
+ 
 R package for simulating traits collected in populations, with autocorrelation by individual and by population.
 
 Before installing, install dependencies:
