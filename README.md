@@ -13,12 +13,10 @@ install.packages('reshape')
 ```
 
 Then, install from GitHub using `devtools`. If you are a Windows user, you will also
-need `Rtools`.
+need `Rtools` (if you are using R > v4.0, follow the directions at https://cran.r-project.org/bin/windows/Rtools/, and be patient).
 
 ```r
-install.packages('Rtools')
 install.packages('devtools')
-library('Rtools')
 library('devtools')
 install_github('andrew-hipp/traitsPopSim')
 ```
