@@ -13,8 +13,8 @@ function(Nsites,
 
   # 1. calculate covariance matrices for all data
   Csites <- cov(siteMeans[, chars]) # cov among site means
-  Ctrees <- lapply(split(otm[, chars], otm$site), cov) %>%
-           Reduce('+', .) / length(unique(otm$site)) # cov among tree means, within sites
+  Ctrees <- lapply(split(treeMeans[, chars], treeMeans$site), cov) %>%
+           Reduce('+', .) / length(unique(treeMeans$site)) # cov among tree means, within sites
   Cleaves <- lapply(split(all.dat[, chars], all.dat$tree), cov) %>%
              Reduce('+', .) / length(unique(all.dat$tree)) # cov among leaves, within trees
 
