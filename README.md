@@ -1,7 +1,7 @@
 # traitsPopSim
 _v0.9-1; 2020-11-03_  
 _Documentation still in prep, package functional_
- 
+
 R package for simulating traits collected in populations, with autocorrelation by individual and by population.
 
 Before installing, install dependencies:
@@ -28,4 +28,6 @@ released under [![DOI](https://zenodo.org/badge/140023087.svg)](https://zenodo.o
 
 Note that you may get a "Lazy load database corrupt" error if you run the package
 right after installation. If so, don't worry! Close R, open again, bring the package
-back in using `library(traitsPopSim)` and it should work fine.
+back in using `library(traitsPopSim)` and it should work fine. I've installed
+the package successfully from GitHub under Windows 10 (running R 4.0.2,
+'Taking Off Again') and Ubuntu 16.04 (running R 4.0.3, 'Bunny-Wunnies Freak Out').
