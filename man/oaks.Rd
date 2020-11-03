@@ -2,10 +2,11 @@
 \alias{oaks}
 \docType{data}
 \title{
-Dataset of
+Dataset of oak observations and names of characters collected
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+These are measurements on individual leaves collected from across the range of
+bur oak (_Quercus macrocarpa_).
 }
 \usage{data("oaks")}
 \format{
