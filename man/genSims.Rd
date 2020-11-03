@@ -62,7 +62,7 @@ Andrew L Hipp (ahipp@mortonarb.org)
 data(oaks)
 otm <- as.data.frame(t(sapply(split(oaks$traits[oaks$charVec], oaks$traits$tree), function(x) apply(x, 2, mean))))
 otm$site <- oaks$traits$site[match(row.names(otm), oaks$traits$tree)]
-osm <- as.data.frame(t(sapply(split(otm, oaks$traits$site[match(row.names(otm), oaks$traits$tree)]), function(x) apply(x, 2, mean))))
+osm <- as.data.frame(t(sapply(split(otm[, oaks$charVec], otm$site), function(x) apply(x, 2, mean))))
 
 simsList <- genSims(Nsites = 5, # all sims will have 5 sites; ordinarily, 20 or more
                     Ntrees = 3:8, # 3-8 trees per site
