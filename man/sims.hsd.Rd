@@ -10,12 +10,10 @@ Tukey's HSD on simulations ANOVA
 \usage{
 sims.hsd(sa, Ncores = 1, writeDat = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{sa}{
 %%     ~~Describe \code{sa} here~~
 }
-\arguments{
   \item{Ncores}{
 number of processing cores to use
 }
