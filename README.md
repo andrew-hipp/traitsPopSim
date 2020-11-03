@@ -12,4 +12,4 @@ install.packages('reshape')
 ```
 
 For a worked example, see https://github.com/andrew-hipp/oak-morph-2020,
-published under [![DOI](https://zenodo.org/badge/140023087.svg)](https://zenodo.org/badge/latestdoi/140023087)
+released under [![DOI](https://zenodo.org/badge/140023087.svg)](https://zenodo.org/badge/latestdoi/140023087).
