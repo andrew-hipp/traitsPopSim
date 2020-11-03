@@ -1,6 +1,6 @@
 plot.hsd <-
 function(x, whichdo = c('Means', 'Proportions'), useValNames = FALSE, printVals = TRUE, ...) {
-  if(class(x[[length(x)]]) == 'list') x <- makeMat.sims(x, whichdo, ...)
+  if(class(x[[length(x)]]) == 'list') x <- makeMat.sims(x, sites = which(sapply(x, function(x) !is.null(x))), do = whichdo, ...)
   p <- vector('list', 2)
   for(i in 1:length(whichdo)) {
     x.means <- x[[whichdo[i]]]
