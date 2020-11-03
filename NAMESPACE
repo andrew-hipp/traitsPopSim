@@ -1,8 +1,8 @@
 export("genSims", "plot.hsd", "sims.aov",
        "sims.hsd")
-import(agricolae,
-  egg,
-  magrittr,
-  mvtnorm,
-  parallel,
-  reshape)
+import(agricolae)
+import(egg)
+import(magrittr)
+import(mvtnorm)
+import(parallel)
+import(reshape)
