@@ -1,5 +1,5 @@
 makeMat.sims <-
-function(x, sites = attributes(x, 'Nsites')[1], do = c('Means', 'Proportions'), probThresh = c(0.50), type = 'hsd') {
+function(x, sites = attr(x, 'Nsites')[1], do = c('Means', 'Proportions'), probThresh = c(0.50), type = 'hsd') {
   if(type == 'hsd') {
     out <- matrix(NA, length(attr(x, 'Ntrees')), length(attr(x, 'Nleaves')),
                   dimnames = list(paste('Ntr', attr(x, 'Ntrees')),
@@ -17,7 +17,8 @@ function(x, sites = attributes(x, 'Nsites')[1], do = c('Means', 'Proportions'), 
       for(leaves in attr(x, 'Nleaves')) {
         #message(paste('...... doing Nleaves', leaves))
         vect <- sapply(x[[sites]][[trees]][[leaves]], function(a1) {
-          a1 %>% levels %>% paste(collapse = '') %>% strsplit("") %>% '[['(1) %>% unique %>% length
+          # a1 %>% levels %>% paste(collapse = '') %>% strsplit("") %>% '[['(1) %>% unique %>% length
+          a1 %>% unique %>% paste(collapse = '') %>% strsplit("") %>% '[['(1) %>% unique %>% length
           }) # close lapply
         if('Means' %in% do) out$Means[paste('Ntr', trees), paste('Nlf', leaves)] <- mean(vect)
         if('Proportions' %in% do) out$Proportions[paste('Ntr', trees), paste('Nlf', leaves)] <- sum(vect >= (sites * probThresh)) / length(vect)
