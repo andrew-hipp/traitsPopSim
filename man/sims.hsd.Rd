@@ -14,7 +14,7 @@ Conducts Tukey's honestly significant difference test on the simulation
 sims.hsd(sa, Ncores = 1, writeDat = TRUE)
 }
 \arguments{
-  \item{
+  \item{sa}{
 Output from \code{sims.hsd}
 }
   \item{Ncores}{
