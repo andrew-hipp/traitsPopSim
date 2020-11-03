@@ -13,11 +13,12 @@ Description: This package simulates trait data in a structured hierarchical
     among populations. The package simulates data under means and covariances
     (at the tree and site level) based on empirical data provided by the user.
     Thus it can serve as a tool for planning empirical studies based on preliminary
-    data. 
+    data.
 License: GPL-3
 Imports:
   agricolae,
   egg,
   magrittr,
   mvtnorm,
+  parallel,
   reshape
