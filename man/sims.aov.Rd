@@ -7,12 +7,15 @@ ANOVA on simulated data
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-sims.aov(sl, writeDat = TRUE)
+sims.aov(sl, Ncores = 1, writeDat = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{sl}{
 %%     ~~Describe \code{sl} here~~
+}
+\item{Ncores}{
+Number of cores to use in generating ANOVAS
 }
   \item{writeDat}{
 %%     ~~Describe \code{writeDat} here~~

@@ -1,5 +1,5 @@
 sims.aov <-
-function(sl, writeDat = TRUE) {
+function(sl, Ncores = 1, writeDat = TRUE) {
   ## generate anovas
   aovList <- vector('list')
   for(sites in attr(sl, 'Nsites')) {
