@@ -1,6 +1,5 @@
 \name{sims.aov}
 \alias{sims.aov}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
 }
@@ -50,7 +49,7 @@ sims.aov(sl, writeDat = TRUE)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (sl, writeDat = TRUE) 
+function (sl, writeDat = TRUE)
 {
     aovList <- vector("list")
     for (sites in attr(sl, "Nsites")) {
@@ -58,10 +57,10 @@ function (sl, writeDat = TRUE)
         for (trees in attr(sl, "Ntrees")) {
             aovList[[sites]][[trees]] <- vector("list")
             for (leaves in attr(sl, "Nleaves")) {
-                message(paste("Doing", sites, "sites of", trees, 
-                  "trees, each with", leaves, "leaves;", length(sl[[sites]][[trees]][[leaves]]), 
+                message(paste("Doing", sites, "sites of", trees,
+                  "trees, each with", leaves, "leaves;", length(sl[[sites]][[trees]][[leaves]]),
                   "replicates"))
-                aovList[[sites]][[trees]][[leaves]] <- mclapply(sl[[sites]][[trees]][[leaves]], 
+                aovList[[sites]][[trees]][[leaves]] <- mclapply(sl[[sites]][[trees]][[leaves]],
                   function(x) {
                     aov(bladeL ~ site + tree, x)
                   }, mc.cores = Ncores)
@@ -71,7 +70,7 @@ function (sl, writeDat = TRUE)
     attr(aovList, "Nsites") <- attr(sl, "Nsites")
     attr(aovList, "Ntrees") <- attr(sl, "Ntrees")
     attr(aovList, "Nleaves") <- attr(sl, "Nleaves")
-    if (writeDat) 
+    if (writeDat)
         save(aovList, file = format(Sys.time(), "aovList.\%Y-\%m-\%d.Rdata"))
     aovList
   }
