@@ -1,7 +1,7 @@
 \name{sims.aov}
 \alias{sims.aov}
 \title{
-%%  ~~function to do ... ~~
+ANOVA on simulated data
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
