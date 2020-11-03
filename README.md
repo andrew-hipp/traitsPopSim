@@ -23,3 +23,7 @@ install_github('andrew-hipp/traitsPopSim')
 
 For a worked example, see https://github.com/andrew-hipp/oak-morph-2020,
 released under [![DOI](https://zenodo.org/badge/140023087.svg)](https://zenodo.org/badge/latestdoi/140023087).
+
+Note that you may get a "Lazy load database corrupt" error if you run the package
+right after installation. If so, don't worry! Close R, open again, bring the package
+back in using `library(traitsPopSim)` and it should work fine.
