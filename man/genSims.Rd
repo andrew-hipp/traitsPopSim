@@ -1,6 +1,5 @@
 \name{genSims}
 \alias{genSims}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
 }
@@ -71,13 +70,13 @@ genSims(Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, all.dat, chars, wr
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans, 
-    all.dat, chars, writeDat = TRUE) 
+function (Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans,
+    all.dat, chars, writeDat = TRUE)
 {
     Csites <- cov(siteMeans[, chars])
-    Ctrees <- lapply(split(otm[, chars], otm$site), cov) \%>\% 
+    Ctrees <- lapply(split(otm[, chars], otm$site), cov) \%>\%
         Reduce("+", .)/length(unique(otm$site))
-    Cleaves <- lapply(split(all.dat[, chars], all.dat$tree), 
+    Cleaves <- lapply(split(all.dat[, chars], all.dat$tree),
         cov) \%>\% Reduce("+", .)/length(unique(all.dat$tree))
     simulationsList <- vector("list")
     for (sites in Nsites) {
@@ -85,21 +84,21 @@ function (Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans,
         for (trees in Ntrees) {
             simulationsList[[sites]][[trees]] <- vector("list")
             for (leaves in Nleaves) {
-                message(paste("Doing", sites, "sites of", trees, 
-                  "trees, each with", leaves, "leaves;", Nreps, 
+                message(paste("Doing", sites, "sites of", trees,
+                  "trees, each with", leaves, "leaves;", Nreps,
                   "replicates"))
-                simulationsList[[sites]][[trees]][[leaves]] <- mclapply(seq(Nreps), 
+                simulationsList[[sites]][[trees]][[leaves]] <- mclapply(seq(Nreps),
                   function(...) {
-                    if (exists("leavesSim.frame")) 
+                    if (exists("leavesSim.frame"))
                       rm(leavesSim.frame)
-                    siteMeansSim <- rmvnorm(sites, mean = apply(siteMeans[, 
+                    siteMeansSim <- rmvnorm(sites, mean = apply(siteMeans[,
                       chars], 2, mean), sigma = Csites)
-                    treeMeansSim <- lapply(split(siteMeansSim, 
-                      row(siteMeansSim)), function(x) rmvnorm(n = trees, 
+                    treeMeansSim <- lapply(split(siteMeansSim,
+                      row(siteMeansSim)), function(x) rmvnorm(n = trees,
                       mean = x, sigma = Ctrees))
                     leavesSim <- lapply(treeMeansSim, function(x) {
                       lapply(split(x, row(x)), function(y) {
-                        rmvnorm(n = leaves, mean = y, sigma = Cleaves) \%>\% 
+                        rmvnorm(n = leaves, mean = y, sigma = Cleaves) \%>\%
                           as.data.frame
                       })
                     })
@@ -107,13 +106,13 @@ function (Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans,
                       for (j in 1:length(leavesSim[[i]])) {
                         leavesSim[[i]][[j]]$site <- i
                         leavesSim[[i]][[j]]$tree <- j
-                        if (!exists("leavesSim.frame")) 
+                        if (!exists("leavesSim.frame"))
                           leavesSim.frame <- leavesSim[[i]][[j]]
-                        else leavesSim.frame <- rbind(leavesSim.frame, 
+                        else leavesSim.frame <- rbind(leavesSim.frame,
                           leavesSim[[i]][[j]]) \%>\% as.data.frame
                       }
                     }
-                    names(leavesSim.frame) <- c(chars, "site", 
+                    names(leavesSim.frame) <- c(chars, "site",
                       "tree")
                     leavesSim.frame$site <- factor(leavesSim.frame$site)
                     leavesSim.frame$tree <- factor(leavesSim.frame$tree)
@@ -125,7 +124,7 @@ function (Nsites, Ntrees, Nleaves, Nreps, siteMeans, treeMeans,
     attr(simulationsList, "Nsites") <- Nsites
     attr(simulationsList, "Ntrees") <- Ntrees
     attr(simulationsList, "Nleaves") <- Nleaves
-    if (writeDat) 
+    if (writeDat)
         save(simulationsList, file = format(Sys.time(), "simsList.\%Y-\%m-\%d.Rdata"))
     return(simulationsList)
   }
