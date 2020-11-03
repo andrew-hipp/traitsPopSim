@@ -1,8 +1,8 @@
 Package: traitsPopSim
 Type: Package
 Title: Generate simulated trait data structured by population
-Version: 1.0
-Date: 2020-11-02
+Version: 0.9-1
+Date: 2020-11-03
 Author: Andrew L Hipp <ahipp@mortonarb.org>
 Maintainer: Andrew L Hipp <ahipp@mortonarb.org>
 Description: This package simulates trait data in a structured hierarchical
