@@ -1,9 +1,23 @@
 Package: traitsPopSim
 Type: Package
-Title: What the package does (short line)
+Title: Generate simulated trait data structured by population
 Version: 1.0
 Date: 2020-11-02
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Hipp", "Andrew", email = "ahipp@mortonarb.org",
+    role = c("aut", "cre"))
+Maintainer: Andrew L Hipp <ahipp@mortonarb.org>
+Description: This package simulates trait data in a structured hierarchical
+    sampling design, where observations ("leaves") are nested within individuals
+    ("trees"), and individuals within "sites" or populations. It provides tools
+    for visualizing power of different sampling strategies to detect differences
+    among populations. The package simulates data under means and covariances
+    (at the tree and site level) based on empirical data provided by the user.
+    Thus it can serve as a tool for planning empirical studies based on preliminary
+    data. 
+License: GPL-3
+Imports:
+  agricolae,
+  egg,
+  magrittr,
+  mvtnorm,
+  reshape
