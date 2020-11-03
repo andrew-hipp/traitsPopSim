@@ -1,2 +1,2 @@
-export("genSims", "oaks", "plot.hsd", "sims.aov",
-       "sims.hsd", "traits")
+export("genSims", "plot.hsd", "sims.aov",
+       "sims.hsd")
