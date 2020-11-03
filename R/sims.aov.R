@@ -18,5 +18,5 @@ function(sl, Ncores = 1, writeDat = TRUE) {
   attr(aovList, 'Ntrees') <- attr(sl, 'Ntrees')
   attr(aovList, 'Nleaves') <- attr(sl, 'Nleaves')
   if(writeDat) save(aovList, file = format(Sys.time(), 'aovList.%Y-%m-%d.Rdata'))
-  aovList
+  return(aovList)
   }
