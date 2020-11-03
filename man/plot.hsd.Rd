@@ -16,6 +16,7 @@ plot.hsd(x, whichdo = c("Means", "Proportions"), useValNames = FALSE, printVals 
   \item{x}{
 output from sims.hsd
 }
+  \item{whichdo}{
 Currently only "Means" and "Proportions" is implemented. Currently defaults to
     plotting both. "Mean" returns a plot panel that shows the mean number of
     groups identified using Tukey's HSD; "Proportions" yields a plot panel that
