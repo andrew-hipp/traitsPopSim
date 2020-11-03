@@ -18,10 +18,10 @@ A list of 2 elements
 Measurements were made on bur oak (_Quercus macrocarpa_). Details in study cited under references.
 }
 \source{
-To be added after publication
+Desmond SC, Garner M, Flannery S, Whittemore AT, Hipp AL. 2020. Leaf shape and size variation in bur oaks: An empirical study and simulation of sampling strategies. bioRxiv: 2020.05.11.088039.
 }
 \references{
-To be added after publication
+Desmond SC, Garner M, Flannery S, Whittemore AT, Hipp AL. 2020. Leaf shape and size variation in bur oaks: An empirical study and simulation of sampling strategies. bioRxiv: 2020.05.11.088039.
 }
 \examples{
 data(oaks)

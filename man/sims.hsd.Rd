@@ -1,89 +1,36 @@
 \name{sims.hsd}
 \alias{sims.hsd}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Tukey's HSD on simulations ANOVA
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Conducts Tukey's honestly significant difference test on the simulation
+    ANOVA output (from \code{sims.aov}) as a means of assessing how many
+    different populations can be discriminated from the data simulated, with
+    the reasoning that if there are 20 populations, the best reasonable outcome
+    would be 20 groups.
 }
 \usage{
 sims.hsd(sa, Ncores = 1, writeDat = TRUE)
 }
 \arguments{
-  \item{sa}{
-%%     ~~Describe \code{sa} here~~
+  \item{
+Output from \code{sims.hsd}
 }
   \item{Ncores}{
-number of processing cores to use
+Number of processing cores to use
 }
   \item{writeDat}{
-%%     ~~Describe \code{writeDat} here~~
+Boolean: if TRUE, write output to drive
 }
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of TukeyHSD results with the same nested structure as the \code{sims.aov}
+    object passed into it.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Desmond SC, Garner M, Flannery S, Whittemore AT, Hipp AL. 2020. Leaf shape and size variation in bur oaks: An empirical study and simulation of sampling strategies. bioRxiv: 2020.05.11.088039.
 }
 \author{
-%%  ~~who you are~~
+Andrew L Hipp (ahipp@mortonarb.org)
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (sa, writeDat = TRUE)
-{
-    hsdList <- vector("list")
-    for (sites in attr(sa, "Nsites")) {
-        hsdList[[sites]] <- vector("list")
-        for (trees in attr(sa, "Ntrees")) {
-            hsdList[[sites]][[trees]] <- vector("list")
-            for (leaves in attr(sa, "Nleaves")) {
-                message(paste("Doing", sites, "sites of", trees,
-                  "trees, each with", leaves, "leaves;", length(sa[[sites]][[trees]][[leaves]]),
-                  "replicates"))
-                hsdList[[sites]][[trees]][[leaves]] <- mclapply(sa[[sites]][[trees]][[leaves]],
-                  function(x) {
-                    HSD.test(x, "site")$groups$groups
-                  }, mc.cores = Ncores)
-            }
-        }
-    }
-    attr(hsdList, "Nsites") <- attr(sa, "Nsites")
-    attr(hsdList, "Ntrees") <- attr(sa, "Ntrees")
-    attr(hsdList, "Nleaves") <- attr(sa, "Nleaves")
-    if (writeDat)
-        save(hsdList, file = format(Sys.time(), "hsdList.\%Y-\%m-\%d.Rdata"))
-    hsdList
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

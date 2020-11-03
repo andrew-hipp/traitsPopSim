@@ -43,7 +43,7 @@ See example under genSims
 Called for its side-effect (plotting)
 }
 \references{
-Add citation after publication
+Desmond SC, Garner M, Flannery S, Whittemore AT, Hipp AL. 2020. Leaf shape and size variation in bur oaks: An empirical study and simulation of sampling strategies. bioRxiv: 2020.05.11.088039.
 }
 \author{
 Andrew L Hipp (ahipp@mortonarb.org)
