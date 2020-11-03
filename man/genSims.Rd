@@ -30,7 +30,7 @@ Data frame: character means by site, with characters as columns
 Data frame: character means by individual, with characters as columns; should include a column called "site" with the site each individual comes from
 }
   \item{all.dat}{
-Data frame: characters measured (in the example, on leaves), with characters as columns; should include a column called "tree" for individuals
+Data frame: characters measured (in the example, on leaves), with characters as columns; should include a column called "tree" for individuals amd one called "site"
 }
   \item{chars}{
 Vector: characters to include in simulation
@@ -54,14 +54,19 @@ Andrew L Hipp (ahipp@mortonarb.org)
 
 \examples{
 data(oaks)
-otm <- as.data.frame(t(sapply(split(oaks$traits[c('lat', 'long', 'tree', 'site', oaks$charVec)], oaks$traits$tree), function(x) apply(x, 2, mean))))
+otm <- as.data.frame(t(sapply(split(oaks$traits[oaks$charVec], oaks$traits$tree), function(x) apply(x, 2, mean))))
+otm$site <- oaks$traits$site[match(row.names(otm), oaks$traits$tree)]
+osm <- as.data.frame(t(sapply(split(otm, oaks$traits$site[match(row.names(otm), oaks$traits$tree)]), function(x) apply(x, 2, mean))))
 
 simsList <- genSims(Nsites = 5,
                     Ntrees = 3:8,
                     Nleaves = 3:8,
                     Nreps = 20,
                     all.dat = oaks$traits,
-
+                    siteMeans = osm,
+                    treeMeans = otm,
+                    chars = oaks$charVec,
+                    writeDat = FALSE
                     )
 
 simsAOV <- sims.aov(simsList)
