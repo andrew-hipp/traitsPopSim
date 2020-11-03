@@ -1,10 +1,12 @@
 \name{plot.hsd}
 \alias{plot.hsd}
 \title{
-%%  ~~function to do ... ~~
+Plots Tukey's HSD results
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Using sims.hsd output, plots a heatmap of the number of Tukey's HSD categories
+    found under each of the simulations, as well as the probability of finding
+    the threshold number of different
 }
 \usage{
 plot.hsd(x, whichdo = c("Means", "Proportions"), useValNames = FALSE, printVals = TRUE, ...)
@@ -12,103 +14,42 @@ plot.hsd(x, whichdo = c("Means", "Proportions"), useValNames = FALSE, printVals 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+output from sims.hsd
 }
-  \item{whichdo}{
-%%     ~~Describe \code{whichdo} here~~
+Currently only "Means" and "Proportions" is implemented. Currently defaults to
+    plotting both. "Mean" returns a plot panel that shows the mean number of
+    groups identified using Tukey's HSD; "Proportions" yields a plot panel that
+    shows the probability of recognizing at least the threshold percent of groups.
 }
   \item{useValNames}{
-%%     ~~Describe \code{useValNames} here~~
+Currently, leave at default value
 }
   \item{printVals}{
-%%     ~~Describe \code{printVals} here~~
+If TRUE, prints the means and proportions on the plot along with the heatmap;
+    if FALSE, heatmap only, no values printed
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Options to pass along to makeMat.sims (which is not exported). Use \code{probThresh}
+    to set the threshold percentage of populations you are interested in identifying
+    for power analyses. If for example you are simulating 20 populations and want
+    to quantify the power to distinguish at least 10 groups using Tukey's HSD,
+    set \code{probThresh = 0.5} [which is the default].
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+See example under genSims
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Called for its side-effect (plotting)
 }
 \references{
-%% ~put references to the literature/web site here ~
+Add citation after publication
 }
 \author{
-%%  ~~who you are~~
+Andrew L Hipp (ahipp@mortonarb.org)
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{genSims}}
+\code{\link{sims.hsd}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, whichdo = c("Means", "Proportions"), useValNames = FALSE,
-    printVals = TRUE, ...)
-{
-    if (class(x[[length(x)]]) == "list")
-        x <- makeMat.sims(x, whichdo, ...)
-    p <- vector("list", 2)
-    for (i in 1:length(whichdo)) {
-        x.means <- x[[whichdo[i]]]
-        x.means$Ntrees <- attr(x, "Ntrees")
-        names(x.means)[grep("Ntrees", names(x.means))] <- "Number_of_trees_per_site"
-        x.means <- melt(x.means, id.vars = "Number_of_trees_per_site",
-            variable_name = "Number_of_leaves_per_tree")
-        if (useValNames) {
-            names(x.means)[which(names(x.means) == "value")] <- switch(whichdo,
-                mean = "Mean_groups_identified_using_Tukey_HSD",
-                prob = paste("Probability_of_distinguishing",
-                  attr(x, "probThresh"), "proportion_of_populations",
-                  sep = "_"))
-        }
-        x.means$Number_of_leaves_per_tree <- gsub("Nlf ", "",
-            x.means$Number_of_leaves_per_tree) \%>\% as.integer
-        p[[i]] <- ggplot(x.means, aes(x = Number_of_leaves_per_tree,
-            y = Number_of_trees_per_site, fill = value), show.legend = FALSE)
-        p[[i]] <- p[[i]] + geom_tile()
-        if (printVals) {
-            p[[i]] <- p[[i]] + geom_text(aes(label = value),
-                color = "white", size = 2)
-            p[[i]] <- p[[i]] + theme(legend.position = "none")
-        }
-        p[[i]] <- p[[i]] + ggtitle(label = ifelse(whichdo[i] ==
-            "Proportions", paste("Probability of recognizing",
-            attr(x, "probThresh") * 100, "percent of populations"),
-            paste("Mean groups recognized out of", attr(x, "Nsites"),
-                "populations")))
-        p[[i]] <- p[[i]] + theme(axis.title.x = element_blank(),
-            axis.title.y = element_blank())
-        p[[i]] <- p[[i]] + scale_x_continuous(breaks = attr(x,
-            "Nleaves"))
-        p[[i]] <- p[[i]] + scale_y_continuous(breaks = attr(x,
-            "Ntrees"))
-    }
-    grid.arrange(grobs = p, nrow = 1, left = "Number of trees per site",
-        bottom = "Number of leaves per tree")
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
