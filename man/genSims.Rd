@@ -64,8 +64,8 @@ otm <- as.data.frame(t(sapply(split(oaks$traits[oaks$charVec], oaks$traits$tree)
 otm$site <- oaks$traits$site[match(row.names(otm), oaks$traits$tree)]
 osm <- as.data.frame(t(sapply(split(otm[, oaks$charVec], otm$site), function(x) apply(x, 2, mean))))
 
-simsList <- genSims(Nsites = 5, # all sims will have 5 sites; ordinarily, 20 or more
-                    Ntrees = 3:8, # 3-8 trees per site
+simsList <- genSims(Nsites = 10, # all sims will have 5 sites; ordinarily, 20 or more
+                    Ntrees = c(5,10,15), # 5, 10, or 15 trees per site
                     Nleaves = 3:8, # 3-8 leaves per tree
                     Nreps = 20, # 20 reps; ordinarily, 100 or more
                     all.dat = oaks$traits, # data frame of all data
@@ -78,5 +78,5 @@ simsList <- genSims(Nsites = 5, # all sims will have 5 sites; ordinarily, 20 or 
 simsAOV <- sims.aov(simsList)
 simsHSD <- sims.hsd(simsAOV)
 
-plot.hsd(simsHSD, probThresh = 0.5)
+plot.hsd(simsHSD, probThresh = 0.3)
 }
