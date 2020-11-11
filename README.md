@@ -1,6 +1,5 @@
 # traitsPopSim
-_v0.9-1; 2020-11-03_  
-_Documentation still in prep, package functional_
+_v0.9-1; 2020-11-03_
 
 R package for simulating traits collected in populations, with autocorrelation by individual and by population.
 
@@ -20,7 +19,7 @@ need `Rtools` (if you are using R > v4.0, follow the directions at https://cran.
 ```r
 install.packages('devtools')
 library('devtools')
-install_github('andrew-hipp/traitsPopSim')
+install_github('andrew-hipp/traitsPopSim', ref = 'main')
 ```
 
 For a worked example, see https://github.com/andrew-hipp/oak-morph-2020,
