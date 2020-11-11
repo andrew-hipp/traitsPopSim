@@ -29,4 +29,4 @@ Note that you may get a "Lazy load database corrupt" error if you run the packag
 right after installation. If so, don't worry! Close R, open again, bring the package
 back in using `library(traitsPopSim)` and it should work fine. I've installed
 the package successfully from GitHub under Windows 10 (running R 4.0.2,
-'Taking Off Again') and Ubuntu 16.04 (running R 4.0.3, 'Bunny-Wunnies Freak Out').
+'Taking Off Again'; and R 3.6.2, 'Dark and Stormy Night') and Ubuntu 16.04 (running R 4.0.3, 'Bunny-Wunnies Freak Out').
