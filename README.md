@@ -1,5 +1,6 @@
 # traitsPopSim
 _v0.9-1; 2020-11-03_
+[![DOI](https://zenodo.org/badge/309502947.svg)](https://zenodo.org/badge/latestdoi/309502947)
 
 R package for simulating traits collected in populations, with autocorrelation by individual and by population.
 
