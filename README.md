@@ -2,7 +2,9 @@
 _v0.9-1; 2020-11-03_  
 [![DOI](https://zenodo.org/badge/309502947.svg)](https://zenodo.org/badge/latestdoi/309502947)  
 
-R package for simulating traits collected in populations, with autocorrelation by individual and by population.
+R package for simulating traits collected in populations, with autocorrelation by individual and by population. For full study, see:
+
+Desmond SC, Garner M, Flannery S, Whittemore AT, Hipp AL. 2021. [Leaf shape and size variation in bur oaks: an empirical study and simulation of sampling strategies](https://bsapubs.onlinelibrary.wiley.com/doi/10.1002/ajb2.1705). _American Journal of Botany_. doi:10.1002/ajb2.1705.
 
 Before installing, install dependencies:
 
